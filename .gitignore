@@ -17,6 +17,8 @@ logs
 results
 node_modules
 build
+lib
 
 npm-debug.log
 Cargo.lock
+xunit.xml

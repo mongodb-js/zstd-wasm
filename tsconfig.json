@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "types": ["node", "mocha"],
+    "lib": ["ES2020"],
+    "allowJs": false,
+    "declaration": false,
+    "outDir": "./lib",
+    "importHelpers": false,
+    "importsNotUsedAsValues": "error",
+    "sourceMap": false,
+    "inlineSourceMap": false,
+    "inlineSources": false,
+    "newLine": "lf",
+    "noEmitHelpers": true,
+    "noEmitOnError": true,
+    "esModuleInterop": false,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*"],
+  "ts-node": {
+    "transpileOnly": true
+  }
+}

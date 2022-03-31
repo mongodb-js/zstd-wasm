@@ -2,17 +2,45 @@
   "name": "zstd-wasm",
   "version": "0.0.0",
   "description": "Zstd Compression Library",
-  "main": "index.js",
+  "files": [
+    "lib",
+    "src",
+    "tsconfig.json",
+    "scripts/build.ts"
+  ],
+  "main": "lib/index.js",
   "scripts": {
-    "test": "mocha --recursive test/"
+    "test": "mocha test",
+    "build": "ts-node scripts/build.ts"
+  },
+  "engines": {
+    "node": ">=14"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@bokuweb/zstd-wasm": "^0.0.16"
-  },
+  "license": "Apache-2.0",
   "devDependencies": {
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "^17.0.21",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
     "chai": "^4.3.6",
-    "mocha": "^9.2.1"
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "mocha": "^9.2.1",
+    "prettier": "^2.6.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2",
+    "wtfnode": "^0.9.1"
+  },
+  "@@nativeDependencies": {
+    "zstd": {
+      "repository": "git@github.com:facebook/zstd.git",
+      "version": "v1.5.2"
+    },
+    "emsdk": {
+      "repository": "git@github.com:emscripten-core/emsdk.git",
+      "version": "3.1.7"
+    }
   }
 }
