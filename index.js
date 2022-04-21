@@ -1,16 +1,34 @@
 const { promises } = require('fs');
-const { init, compress, decompress } = require('@bokuweb/zstd-wasm');
+const { join } = require('path');
+const { Worker } = require('worker_threads');
 
-function encode(buffer) {
-  return compress(buffer);
+let workerCompress;
+let workerDecompress;
+
+function encode(data) {
+  if (workerCompress == null) {
+    workerCompress = new Worker(join(__dirname, 'worker_compress.js'), {
+      workerData: data
+    });
+    workerCompress.unref();
+  }
+  return new Promise((resolve, reject) => {
+    workerCompress.on('message', resolve);
+    workerCompress.on('error', reject);
+  });
 }
 
-function decode(buffer) {
-  return decompress(buffer);
+function decode(data) {
+  if (workerDecompress == null) {
+    workerDecompress = new Worker(join(__dirname, 'worker_decompress.js'), {
+      workerData: data
+    });
+    workerDecompress.unref();
+  }
+  return new Promise((resolve, reject) => {
+    workerDecompress.on('message', resolve);
+    workerDecompress.on('error', reject);
+  });
 }
-
-(async () => {
-  await init();
-})();
 
 module.exports = { encode, decode };
